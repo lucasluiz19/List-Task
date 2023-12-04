@@ -1,6 +1,13 @@
 import styles from "./TaskAdded.module.css"
 
-export function TaskAdded({content}){
+export function TaskAdded({content,deleteTask}){
+    function handleDeleteTask(){
+        deleteTask(content)
+       
+
+    }
+
+
     return(
         <div className={styles.contentTask}>
             <button>
@@ -9,7 +16,7 @@ export function TaskAdded({content}){
                 </svg>
             </button>
             <p>{content}</p>
-            <button>
+            <button onClick={handleDeleteTask}>
                 <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14.2021 9.98547H12.8716V15.5073H14.2021V9.98547Z" fill="#808080"/>
                     <path d="M11.4624 9.98547H10.1318V15.5073H11.4624V9.98547Z" fill="#808080"/>

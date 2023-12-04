@@ -15,8 +15,15 @@ export function Task(){
         event.preventDefault()
         const newTextTask= event.target.task.value
         setTasks([...tasks, newTextTask])
+        event.target.task.value=""
     } 
     
+    function deleteTask(taskToDelete){
+       const taskWithDelete = tasks.filter(task=>{
+        return task!== taskToDelete
+       } )
+       setTasks(taskWithDelete)
+    }
     return(
         <article>
             <form  onSubmit={handleCreatedNewTask} className={styles.form}>
@@ -39,7 +46,14 @@ export function Task(){
             <div>
                 {
                     tasks.map(task=>{
-                        return <TaskAdded content={task}/>
+                        return (
+                            
+                            <TaskAdded
+                             content={task}
+                             deleteTask={deleteTask}   
+                            />
+                        )
+                        
                     })
                 }
             </div>
