@@ -21,9 +21,7 @@ export function Task(){
             alert('tarefa já adicionada')
         }else{
             setTasks([...tasks, newTaskText ])
-      
             setNewTaskText('')
-    
             setContTask( tasks.length+1)
         }
         
