@@ -3,31 +3,55 @@ import { TaskAdded } from "./TaskAdded"
 import { TaskHeader } from "./TaskHeader"
 import { useState } from 'react'
 
-
-
 export function Task(){
-    const [tasks, setTasks] =useState([
-       'primeira tarefa adicionada'
-    ])
+    
+    const [tasks, setTasks] =useState([])
 
+    const [newTaskText, setNewTaskText]=useState('')  
+
+    const [contTask, setContTask] = useState(Number)
 
     function handleCreatedNewTask(){
         event.preventDefault()
-        const newTextTask= event.target.task.value
-        setTasks([...tasks, newTextTask])
-        event.target.task.value=""
+        
+        if(newTaskText===""){
+            alert( 'necessário digitar uma tarefa')
+          
+        }else if(tasks.includes(newTaskText)){
+            alert('tarefa já adicionada')
+        }else{
+            setTasks([...tasks, newTaskText ])
+      
+            setNewTaskText('')
+    
+            setContTask( tasks.length+1)
+        }
+        
     } 
+
+    function handleNewTaskText(){
+        setNewTaskText(event.target.value)
+    }
     
     function deleteTask(taskToDelete){
        const taskWithDelete = tasks.filter(task=>{
         return task!== taskToDelete
        } )
        setTasks(taskWithDelete)
+
+       setContTask( tasks.length-1)
+     
     }
     return(
         <article>
             <form  onSubmit={handleCreatedNewTask} className={styles.form}>
-                <input name="task" type="text" placeholder="Adicione uma nova tarefa"/>
+                <input
+                    value={newTaskText} 
+                    onChange={handleNewTaskText} 
+                    name="task" 
+                    type="text" 
+                    placeholder="Adicione uma nova tarefa"
+                />
                 <button className={styles.taskButton}>         Criar 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <g clip-path="url(#clip0_6002_58)">
@@ -42,13 +66,17 @@ export function Task(){
                     </svg>
                 </button>
             </form>
-            <TaskHeader/>
+            <TaskHeader
+                contTask={contTask}
+            
+            />
             <div>
                 {
                     tasks.map(task=>{
                         return (
                             
                             <TaskAdded
+                             
                              content={task}
                              deleteTask={deleteTask}   
                             />
