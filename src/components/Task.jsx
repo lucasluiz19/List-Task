@@ -44,6 +44,7 @@ export function Task(){
         <article>
             <form  onSubmit={handleCreatedNewTask} className={styles.form}>
                 <input
+                    maxLength={75}
                     value={newTaskText} 
                     onChange={handleNewTaskText} 
                     name="task" 

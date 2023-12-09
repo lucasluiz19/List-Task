@@ -1,5 +1,6 @@
 .contentTask{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     padding: 1rem 1.6rem;
     border-radius: 0.8rem;
@@ -12,7 +13,23 @@
     
 
 }
-.contentTask button{
+.inputChecked{
+    all: unset;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #4EA8DE;
+    border-radius: 50%;
+    
+}
+.inputChecked:checked{
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #4EA8DE;
+    border-radius: 50%;
+    background-color: #5E60CE;
+
+}
+.contentTask .taskDelete{
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -20,7 +37,10 @@
 }
 .contentTask p{
     color:#F2F2F2;
+    max-width: 70%;
     font-size: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
     font-style: normal;
     font-weight: 400;
     line-height: 140%; 
